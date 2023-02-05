@@ -1,1 +1,1 @@
-/// チームエンティティ
+pub mod team_entity;
