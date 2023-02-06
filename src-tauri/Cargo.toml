@@ -1,7 +1,7 @@
 [package]
 name = "kabaddi-scorer"
 version = "0.0.0"
-description = "The system is designed to record kabaddi matches. Provides UI for real-time distribution."
+description = "The system is designed to record kabaddi gamees. Provides UI for real-time distribution."
 authors = ["Yu Tokunaga<ludoludo@outlook.jp>"]
 license = ""
 repository = ""

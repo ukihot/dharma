@@ -1,2 +1,3 @@
 pub mod team;
-pub mod match;
+pub mod game;
+pub mod error;

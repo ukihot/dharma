@@ -1,7 +1,7 @@
 pub mod model;
 pub mod service;
 
-#![cfg_attr(
+#[cfg_attr(
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
 )]
