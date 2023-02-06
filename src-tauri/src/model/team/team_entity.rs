@@ -1,4 +1,4 @@
-use crate::model::error::type_error::MyError;
+use crate::model::error::MyError;
 use super::{team_id::TeamId, team_player::Player};
 
 /// チームエンティティ

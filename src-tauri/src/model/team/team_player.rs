@@ -1,5 +1,5 @@
 use super::{team_entity::Team, team_player_id::TeamPlayerId};
-use crate::model::error::type_error::MyError;
+use crate::model::error::MyError;
 
 pub struct Player {
     pub name: String,

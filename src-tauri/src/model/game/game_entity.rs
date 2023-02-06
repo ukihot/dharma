@@ -1,7 +1,7 @@
-use crate::model::r#game::game_id::GameId;
+use crate::model::game::game_id::GameId;
 
 pub struct Game {
-    id: GameId,
+    pub id: GameId,
     // teams: Vec<Team>,
     // raid: GameRaid,
     // score: GameScore,
