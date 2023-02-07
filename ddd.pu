@@ -13,6 +13,7 @@ package PlayerAggregate{
     - 体重 : PlayerWeight
     - 背番号 : PlayerNumber
     - コート内か : Boolean
+    + 選手登録(氏名, 身長, 体重, 背番号)
   }
 }
 package ScoreAggregate{
@@ -20,6 +21,8 @@ package ScoreAggregate{
     - 得点チーム : Team
     - 得点数 : ScorePoints
   }
+}
+package GameAggregate{
   class Raids {
     - レイダー : Player
     - 成功か : Boolean
@@ -39,10 +42,10 @@ package ScoreAggregate{
 
 }
 
+Player o.. Team
+
 Raids .down.* Score
 Score *.. Tackles
-
-Player o.. Team
 Score .left.> Team
 
 @enduml
