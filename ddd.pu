@@ -1,0 +1,48 @@
+@startuml kabaddi-scorer
+Title kabaddi
+
+package PlayerAggregate{
+  class Team{
+    - メンバー : Player[]
+    - スコア : Score
+  }
+
+  class Player{
+    - 氏名 : PlayerName
+    - 身長 : PlayerHeight
+    - 体重 : PlayerWeight
+    - 背番号 : PlayerNumber
+    - コート内か : Boolean
+  }
+}
+package ScoreAggregate{
+  class Score {
+    - 得点チーム : Team
+    - 得点数 : ScorePoints
+  }
+  class Raids {
+    - レイダー : Player
+    - 成功か : Boolean
+    - ボークラインを超えたか : Boolean
+    - エンプティレイド回数 : RaidsNumber
+    + タッチポイントでスコア更新(タッチしたアンティ[])
+    + ボーナスポイントでスコア更新()
+  }
+
+  class Tackles {
+    - アンティ : Player[]
+    - 敵レイダー : Player
+    - 成功か : Boolean
+    + スーパータックルでスコア更新()
+    + 失敗したアンティをアウトにする(敵レイダー)
+    }
+
+}
+
+Raids .down.* Score
+Score *.. Tackles
+
+Player o.. Team
+Score .left.> Team
+
+@enduml
