@@ -1,5 +1,5 @@
 pub mod domain;
-pub mod usecases;
+pub mod services;
 
 #[cfg_attr(
     all(not(debug_assertions), target_os = "windows"),

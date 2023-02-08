@@ -1,0 +1,55 @@
+@startuml kabaddi-scorer
+Title kabaddi
+
+package TeamAggregate{
+  class Team{
+    - メンバー : Player[]
+    - 合計スコア : Score
+    + 選手登録(メンバー)
+    + 選手アウト()
+    + 選手復活()
+    + アンティメンバー取得()
+  }
+
+  class Player{
+    - 氏名 : PlayerName
+    - 身長 : PlayerHeight
+    - 体重 : PlayerWeight
+    - 背番号 : PlayerNumber
+    - プレイアブル : PlayerStatus
+    + 選手登録(氏名, 身長, 体重, 背番号)
+  }
+}
+
+package LogAggregate{
+  note right of Log : オブザーバ視点
+
+  class Log {
+    - サイクル数 : Cycle
+    - スコア : Score
+    - アンティ : Player[]
+    - レイダー : Player
+    - 試合時間 : GameTime
+    - レイド結果 : RaidResult
+    + レイド結果を取得する(サイクル数)
+    }
+
+  class Score {
+    - チーム : Team
+    - 得点数 : ScorePoints
+    + 得点する(チーム)
+  }
+  class RaidResult {
+    - 成功判定 : Boolean
+    - 変動点数 : ScorePoints
+    - エンプティレイド回数 : RaidsNumber
+    + エンプティレイド回数を増やす(チーム)
+    + エンプティレイド回数をリセットする(チーム)
+  }
+}
+
+Team -- Player
+Team <.. Score
+Score <.. RaidResult
+Log <.. Score
+@enduml
