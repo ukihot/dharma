@@ -1,5 +1,5 @@
 [package]
-name = "kabaddi-scorer"
+name = "dharma"
 version = "0.0.0"
 description = "The system is designed to record kabaddi gamees. Provides UI for real-time distribution."
 authors = ["Yu Tokunaga<ludoludo@outlook.jp>"]

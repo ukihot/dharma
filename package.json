@@ -1,7 +1,7 @@
 {
-  "name": "kabaddi-scorer",
+  "name": "dharma",
   "version": "0.0.0",
-  "description": "",
+  "description": "kabaddi-scorer",
   "scripts": {
     "start": "vite",
     "dev": "vite",
