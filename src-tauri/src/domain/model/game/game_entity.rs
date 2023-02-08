@@ -1,4 +1,4 @@
-use crate::model::game::game_id::GameId;
+use crate::domain::model::game::game_id::GameId;
 
 pub struct Game {
     pub id: GameId,

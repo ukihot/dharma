@@ -861,6 +861,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "dharma"
+version = "0.0.0"
+dependencies = [
+ "async-std",
+ "sea-orm",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tokio",
+]
+
+[[package]]
 name = "digest"
 version = "0.10.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1730,19 +1743,6 @@ dependencies = [
  "serde",
  "serde_json",
  "treediff",
-]
-
-[[package]]
-name = "kabaddi-scorer"
-version = "0.0.0"
-dependencies = [
- "async-std",
- "sea-orm",
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tokio",
 ]
 
 [[package]]

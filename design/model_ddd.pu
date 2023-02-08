@@ -1,5 +1,5 @@
 @startuml kabaddi-scorer
-Title kabaddi
+Title kabaddi-model
 
 package TeamAggregate{
   class Team{
@@ -22,7 +22,7 @@ package TeamAggregate{
 }
 
 package LogAggregate{
-  note right of Log : オブザーバ視点
+  note left of Log : オブザーバ視点
 
   class Log {
     - サイクル数 : Cycle
@@ -43,13 +43,14 @@ package LogAggregate{
     - 成功判定 : Boolean
     - 変動点数 : ScorePoints
     - エンプティレイド回数 : RaidsNumber
+    + 点数を決定する()
     + エンプティレイド回数を増やす(チーム)
     + エンプティレイド回数をリセットする(チーム)
   }
 }
 
 Team -- Player
-Team <.. Score
-Score <.. RaidResult
-Log <.. Score
+Score .> Team
+Log <.. RaidResult
+Score ..> Log
 @enduml
