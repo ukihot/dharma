@@ -2,16 +2,15 @@ use std::convert::TryFrom;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
-pub struct TeamPlayerId(pub i32);
+pub struct PlayerId(pub i32);
 
-impl TeamPlayerId {
+impl PlayerId {
     pub fn new(id: i32) -> Self {
         Self(id)
     }
 }
 
-/// u16 から TeamPlayerId への変換。
-impl TryFrom<i32> for TeamPlayerId {
+impl TryFrom<i32> for PlayerId {
     type Error = ();
 
     fn try_from(n: i32) -> Result<Self, Self::Error> {
@@ -19,9 +18,8 @@ impl TryFrom<i32> for TeamPlayerId {
     }
 }
 
-/// TeamPlayerId から i32 への変換処理の振る舞いを定義。
-impl From<TeamPlayerId> for i32 {
-    fn from(n: TeamPlayerId) -> Self {
+impl From<PlayerId> for i32 {
+    fn from(n: PlayerId) -> Self {
         n.0
     }
 }

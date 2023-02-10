@@ -1,5 +1,7 @@
 use anyhow::Result;
 use validator::Validate;
+
+use super::{player_id::PlayerId, player_name::PlayerName};
 #[derive(Debug, Clone, PartialEq, Eq, Validate)]
 pub struct Player {
     pub id: PlayerId,
