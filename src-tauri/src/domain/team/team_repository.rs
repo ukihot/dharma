@@ -1,4 +1,6 @@
-use super::{team_entity::Team, team_player::Player, team_score::TeamScore};
+use crate::domain::player::player_entity::Player;
+
+use super::{team_entity::Team, team_score::TeamScore};
 use anyhow::Result;
 use async_trait::async_trait;
 

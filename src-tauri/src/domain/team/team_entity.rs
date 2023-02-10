@@ -1,4 +1,6 @@
-use super::{team_id::TeamId, team_name::TeamName, team_player::Player, team_score::TeamScore};
+use crate::domain::player::player_entity::Player;
+
+use super::{team_id::TeamId, team_name::TeamName, team_score::TeamScore};
 use anyhow::Result;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
