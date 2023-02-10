@@ -292,6 +292,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a4a4ddaa51a5bc52a6948f74c06d20aaaddb71924eab79b8c97a8c556e942d6a"
 
 [[package]]
+name = "bigdecimal"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6aaf33151a6429fe9211d1b276eafdf70cdff28b071e76c0b0e1503221ea3744"
+dependencies = [
+ "num-bigint",
+ "num-integer",
+ "num-traits",
+]
+
+[[package]]
 name = "bitflags"
 version = "1.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -663,21 +674,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "crc"
-version = "3.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "86ec7a15cbe22e59248fc7eadb1907dab5ba09372595da4d73dd805ed4417dfe"
-dependencies = [
- "crc-catalog",
-]
-
-[[package]]
-name = "crc-catalog"
-version = "2.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9cace84e55f07e7301bae1c519df89cdad8cc3cd868413d3fdbdeca9ff3db484"
-
-[[package]]
 name = "crc32fast"
 version = "1.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -864,6 +860,7 @@ dependencies = [
 name = "dharma"
 version = "0.0.0"
 dependencies = [
+ "anyhow",
  "async-std",
  "sea-orm",
  "serde",
@@ -871,6 +868,7 @@ dependencies = [
  "tauri",
  "tauri-build",
  "tokio",
+ "validator",
 ]
 
 [[package]]
@@ -1065,7 +1063,6 @@ checksum = "13e2792b0ff0340399d58445b88fd9770e3489eff258a4cbc1523418f12abf84"
 dependencies = [
  "futures-channel",
  "futures-core",
- "futures-executor",
  "futures-io",
  "futures-sink",
  "futures-task",
@@ -1594,6 +1591,17 @@ checksum = "b9e0384b61958566e926dc50660321d12159025e767c18e043daf26b70104c39"
 
 [[package]]
 name = "idna"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "418a0a6fab821475f634efe3ccc45c013f742efe03d853e8d3355d5cb850ecf8"
+dependencies = [
+ "matches",
+ "unicode-bidi",
+ "unicode-normalization",
+]
+
+[[package]]
+name = "idna"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e14ddfc70884202db2244c223200c204c2bda1bc6e0998d11b5e024d657209e6"
@@ -1601,6 +1609,12 @@ dependencies = [
  "unicode-bidi",
  "unicode-normalization",
 ]
+
+[[package]]
+name = "if_chain"
+version = "1.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cb56e1aa765b4b4f3aadfab769793b7087bb03a4ea4920644a6d238e2df5b9ed"
 
 [[package]]
 name = "ignore"
@@ -2841,15 +2855,15 @@ dependencies = [
 
 [[package]]
 name = "sea-orm"
-version = "0.10.7"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "88694d01b528a94f90ad87f8d2f546d060d070eee180315c67d158cb69476034"
+checksum = "e7a0e3ec90718d849c73b167df7a476672b64c7ee5f3c582179069e63b2451e1"
 dependencies = [
  "async-stream",
  "async-trait",
+ "bigdecimal",
  "chrono",
  "futures",
- "futures-util",
  "log",
  "ouroboros",
  "rust_decimal",
@@ -2869,9 +2883,9 @@ dependencies = [
 
 [[package]]
 name = "sea-orm-macros"
-version = "0.10.7"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7216195de9c6b2474fd0efab486173dccd0eff21f28cc54aa4c0205d52fb3af0"
+checksum = "5d89f7d4d2533c178e08a9e1990619c391e9ca7b402851d02a605938b15e03d9"
 dependencies = [
  "bae",
  "heck 0.3.3",
@@ -2882,10 +2896,11 @@ dependencies = [
 
 [[package]]
 name = "sea-query"
-version = "0.27.2"
+version = "0.28.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a4f0fc4d8e44e1d51c739a68d336252a18bc59553778075d5e32649be6ec92ed"
+checksum = "d2fbe015dbdaa7d8829d71c1e14fb6289e928ac256b93dfda543c85cd89d6f03"
 dependencies = [
+ "bigdecimal",
  "chrono",
  "rust_decimal",
  "sea-query-derive",
@@ -2896,10 +2911,11 @@ dependencies = [
 
 [[package]]
 name = "sea-query-binder"
-version = "0.2.2"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c2585b89c985cfacfe0ec9fc9e7bb055b776c1a2581c4e3c6185af2b8bf8865"
+checksum = "03548c63aec07afd4fd190923e0160d2f2fc92def27470b54154cf232da6203b"
 dependencies = [
+ "bigdecimal",
  "chrono",
  "rust_decimal",
  "sea-query",
@@ -2911,11 +2927,11 @@ dependencies = [
 
 [[package]]
 name = "sea-query-derive"
-version = "0.2.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "34cdc022b4f606353fe5dc85b09713a04e433323b70163e81513b141c6ae6eb5"
+checksum = "63f62030c60f3a691f5fe251713b4e220b306e50a71e1d6f9cce1f24bb781978"
 dependencies = [
- "heck 0.3.3",
+ "heck 0.4.1",
  "proc-macro2",
  "quote",
  "syn",
@@ -3216,11 +3232,11 @@ checksum = "dcbc16ddba161afc99e14d1713a453747a2b07fc097d2009f4c300ec99286105"
 dependencies = [
  "ahash",
  "atoi",
+ "bigdecimal",
  "bitflags",
  "byteorder",
  "bytes",
  "chrono",
- "crc",
  "crossbeam-queue",
  "dotenvy",
  "either",
@@ -3248,7 +3264,6 @@ dependencies = [
  "rustls-pemfile",
  "serde",
  "serde_json",
- "sha2",
  "smallvec",
  "sqlformat",
  "sqlx-rt",
@@ -3274,7 +3289,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde_json",
- "sha2",
  "sqlx-core",
  "sqlx-rt",
  "syn",
@@ -3926,7 +3940,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0d68c799ae75762b8c3fe375feb6600ef5602c883c5d21eb51c09f22b83c4643"
 dependencies = [
  "form_urlencoded",
- "idna",
+ "idna 0.3.0",
  "percent-encoding",
  "serde",
 ]
@@ -3951,6 +3965,48 @@ checksum = "1674845326ee10d37ca60470760d4288a6f80f304007d92e5c53bab78c9cfd79"
 dependencies = [
  "getrandom 0.2.8",
  "serde",
+]
+
+[[package]]
+name = "validator"
+version = "0.16.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "32ad5bf234c7d3ad1042e5252b7eddb2c4669ee23f32c7dd0e9b7705f07ef591"
+dependencies = [
+ "idna 0.2.3",
+ "lazy_static",
+ "regex",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "url",
+ "validator_derive",
+]
+
+[[package]]
+name = "validator_derive"
+version = "0.16.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bc44ca3088bb3ba384d9aecf40c6a23a676ce23e09bdaca2073d99c207f864af"
+dependencies = [
+ "if_chain",
+ "lazy_static",
+ "proc-macro-error",
+ "proc-macro2",
+ "quote",
+ "regex",
+ "syn",
+ "validator_types",
+]
+
+[[package]]
+name = "validator_types"
+version = "0.16.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "111abfe30072511849c5910134e8baf8dc05de4c0e5903d681cbd5c9c4d611e3"
+dependencies = [
+ "proc-macro2",
+ "syn",
 ]
 
 [[package]]

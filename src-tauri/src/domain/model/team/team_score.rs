@@ -1,7 +1,7 @@
 use validator::Validate;
 
 #[derive(PartialEq, Eq, Clone, PartialOrd, Ord, Debug, Validate)]
-pub struct TeamId {
-    #[validate(length(min = 1))]
-    value: String,
+pub struct TeamScore {
+    #[validate(range(min = 1))]
+    value: u8,
 }

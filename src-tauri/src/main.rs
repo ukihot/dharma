@@ -13,7 +13,7 @@ fn greet(name: &str) -> String {
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
-            let scorer_window =
+            let _scorer_window =
                 tauri::WindowBuilder::new(app, "local", tauri::WindowUrl::App("index.html".into()))
                     .build()?;
             Ok(())

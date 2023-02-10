@@ -1,23 +1,26 @@
-use crate::domain::error::MyError;
-use super::{team_id::TeamId, team_player::Player};
+use super::{team_id::TeamId, team_name::TeamName, team_player::Player, team_score::TeamScore};
+use anyhow::Result;
 
-/// チームエンティティ
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Team {
     pub id: TeamId,
-    pub name: String,
-    pub players: Vec<Player>,
+    pub name: TeamName,
+    pub total_score: TeamScore,
+    pub members: Vec<Player>,
 }
 
 impl Team {
-    // Teamのコンストラクタ
-    pub fn new(id: TeamId, name: &str) -> Result<Self, MyError> {
-        if name.chars().count() < 3 {
-            return Err(MyError::TypeError("チーム名は3文字以上です".to_owned()));
-        }
+    pub fn new(
+        id: TeamId,
+        name: TeamName,
+        total_score: TeamScore,
+        members: Vec<Player>,
+    ) -> Result<Self> {
         Ok(Self {
             id,
-            name: name.to_string(),
-            players: vec![],
+            name,
+            total_score,
+            members,
         })
     }
 }
