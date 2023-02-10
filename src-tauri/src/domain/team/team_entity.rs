@@ -23,10 +23,4 @@ impl Team {
             members,
         })
     }
-
-    /// スコアを加算する
-    pub fn add_score(&mut self, score: TeamScore) -> Result<Self> {
-        self.total_score += score;
-        Ok(Self)
-    }
 }
