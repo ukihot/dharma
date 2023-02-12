@@ -21,6 +21,8 @@ tokio =  "1.25.0"
 validator = { version = "0.16", features = ["derive"] }
 anyhow = "1.0.69"
 async-trait = "0.1.64"
+chrono = "0.4.23"
+rusqlite = { version = "*", features = ["bundled"] }
 
 [features]
 # by default Tauri runs in production mode

@@ -10,7 +10,8 @@ package TeamAggregate{
     + 選手復活()
     + アンティメンバー取得()
   }
-
+}
+package PlayerAggregate{
   class Player{
     - 氏名 : PlayerName
     - 身長 : PlayerHeight
@@ -21,9 +22,9 @@ package TeamAggregate{
   }
 }
 
-package CycleLogAggregate{
-class Log {
-    - サイクル数 : Cycle
+package KabbadiAggregate{
+class Kabbadi {
+    - ラウンド : Round
     - アンティ : Player[]
     - レイダー : Player
     - 試合時間 : GameTime
@@ -50,9 +51,11 @@ package RaidAggregate{
 
   enum RaidResult {
     - TackleOut
+    - SuperTacle
     - LineOut
     - CantOut
     - ThirdRaidOut
+    - NotEntryBaulk
     - Touch
     - Empty
     - BonusOnly
@@ -60,9 +63,9 @@ package RaidAggregate{
   }
 }
 
-Player ..o Team
-Log <-left- Player
-Log <-- GameTime
-Raid -left-> Log
+Player o.. Team
+Kabbadi <-left- Player
+Kabbadi <-- GameTime
+Raid -left-> Kabbadi
 Raid *.. RaidResult
 @enduml

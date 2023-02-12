@@ -1,11 +1,15 @@
 use anyhow::Result;
-use validator::Validate;
 
-use super::{player_id::PlayerId, player_name::PlayerName};
-#[derive(Debug, Clone, PartialEq, Eq, Validate)]
+use super::{
+    player_height::PlayerHeight, player_id::PlayerId, player_name::PlayerName,
+    player_number::PlayerNumber, player_role::PlayerRole, player_status::PlayerStatus,
+    player_weight::PlayerWeight,
+};
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Player {
     pub id: PlayerId,
     pub name: PlayerName,
+    pub role: PlayerRole,
     pub height: PlayerHeight,
     pub weight: PlayerWeight,
     pub number: PlayerNumber,
@@ -16,18 +20,20 @@ impl Player {
     pub fn new(
         id: PlayerId,
         name: PlayerName,
+        role: PlayerRole,
         height: PlayerHeight,
         weight: PlayerWeight,
         number: PlayerNumber,
         status: PlayerStatus,
     ) -> Result<Self> {
         Ok(Self {
-            name,
             id,
+            name,
             height,
             weight,
             number,
             status,
+            role,
         })
     }
 }

@@ -1,3 +1,9 @@
 pub mod player_entity;
-pub mod player_id;
+pub mod player_repository;
+pub(super) mod player_id;
 pub(super) mod player_name;
+pub(super) mod player_role;
+pub(super) mod player_weight;
+pub(super) mod player_height;
+pub(super) mod player_status;
+pub(super) mod player_number;

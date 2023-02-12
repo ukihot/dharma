@@ -1,8 +1,6 @@
 use std::convert::TryFrom;
-use serde::{Deserialize, Serialize};
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
-pub struct PlayerId(pub i32);
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct PlayerId(i32);
 
 impl PlayerId {
     pub fn new(id: i32) -> Self {
