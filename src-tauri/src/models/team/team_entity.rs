@@ -4,14 +4,14 @@ use super::{team_id::TeamId, team_name::TeamName, team_score::TeamScore};
 use anyhow::Result;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Team {
+pub struct Team<'a> {
     pub id: TeamId,
     pub name: TeamName,
     pub total_score: TeamScore,
-    pub members: Vec<Player>,
+    pub members: Vec<Player<'a>>,
 }
 
-impl Team {
+impl Team<'_> {
     pub fn new(
         id: TeamId,
         name: TeamName,

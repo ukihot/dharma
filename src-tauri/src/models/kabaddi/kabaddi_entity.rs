@@ -3,20 +3,20 @@ use crate::models::player::player_entity::Player;
 use anyhow::Result;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Kabbadi {
+pub struct Kabbadi<'a> {
     pub round: u8,
     pub result: RaidScenario,
-    pub raider: Player,
-    pub anti: Vec<Player>,
+    pub raider: &'a Player<'a>,
+    pub anti: Vec<&'a Player<'a>>,
     pub remaining_time: GameTime,
 }
 
-impl Kabbadi {
+impl<'a> Kabbadi<'a> {
     pub fn new(
         round: u8,
         result: RaidScenario,
-        raider: Player,
-        anti: Vec<Player>,
+        raider: &'a Player,
+        anti: Vec<&'a Player>,
         remaining_time: GameTime,
     ) -> Result<Self> {
         Ok(Self {

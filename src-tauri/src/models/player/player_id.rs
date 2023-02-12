@@ -1,23 +1,28 @@
 use std::convert::TryFrom;
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub struct PlayerId(i32);
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct PlayerId<'a>(&'a str);
 
-impl PlayerId {
-    pub fn new(id: i32) -> Self {
+impl PlayerId<'_> {
+    pub fn new<T>(id: &str) -> Self
+    where
+        T: Into<String>,
+    {
         Self(id)
     }
 }
 
-impl TryFrom<i32> for PlayerId {
+/// PlayerId 変換
+impl TryFrom<&str> for PlayerId<'_> {
     type Error = ();
 
-    fn try_from(n: i32) -> Result<Self, Self::Error> {
-        Ok(Self(n))
+    fn try_from(id: &str) -> Result<Self, Self::Error> {
+        Ok(Self(id))
     }
 }
 
-impl From<PlayerId> for i32 {
-    fn from(n: PlayerId) -> Self {
-        n.0
+/// スライス変換
+impl From<PlayerId<'_>> for &str {
+    fn from(id: PlayerId) -> Self {
+        id.into()
     }
 }

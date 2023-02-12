@@ -6,9 +6,9 @@ use super::{
     player_weight::PlayerWeight,
 };
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Player {
-    pub id: PlayerId,
-    pub name: PlayerName,
+pub struct Player<'a> {
+    pub id: &'a PlayerId<'a>,
+    pub name: &'a PlayerName<'a>,
     pub role: PlayerRole,
     pub height: PlayerHeight,
     pub weight: PlayerWeight,
@@ -16,10 +16,10 @@ pub struct Player {
     pub status: PlayerStatus,
 }
 
-impl Player {
+impl<'a> Player<'a> {
     pub fn new(
-        id: PlayerId,
-        name: PlayerName,
+        id: &'a PlayerId,
+        name: &'a PlayerName,
         role: PlayerRole,
         height: PlayerHeight,
         weight: PlayerWeight,
