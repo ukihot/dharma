@@ -1,4 +1,4 @@
-pub mod domain;
+pub mod models;
 pub mod services;
 
 #[cfg_attr(

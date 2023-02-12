@@ -1,5 +1,5 @@
 use super::{game_time::GameTime, raid_scenario::RaidScenario};
-use crate::domain::player::player_entity::Player;
+use crate::models::player::player_entity::Player;
 use anyhow::Result;
 
 #[derive(Debug, Clone, PartialEq, Eq)]

@@ -1,4 +1,4 @@
-use crate::domain::player::player_entity::Player;
+use crate::models::player::player_entity::Player;
 
 use super::{team_id::TeamId, team_name::TeamName, team_score::TeamScore};
 use anyhow::Result;
