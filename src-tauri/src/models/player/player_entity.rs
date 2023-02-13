@@ -6,9 +6,9 @@ use super::{
     player_weight::PlayerWeight,
 };
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Player<'a> {
-    pub id: &'a PlayerId<'a>,
-    pub name: &'a PlayerName<'a>,
+pub struct Player {
+    pub id: PlayerId,
+    pub name: PlayerName,
     pub role: PlayerRole,
     pub height: PlayerHeight,
     pub weight: PlayerWeight,
@@ -16,10 +16,10 @@ pub struct Player<'a> {
     pub status: PlayerStatus,
 }
 
-impl<'a> Player<'a> {
+impl Player {
     pub fn new(
-        id: &'a PlayerId,
-        name: &'a PlayerName,
+        id: PlayerId,
+        name: PlayerName,
         role: PlayerRole,
         height: PlayerHeight,
         weight: PlayerWeight,
@@ -27,7 +27,7 @@ impl<'a> Player<'a> {
         status: PlayerStatus,
     ) -> Result<Self> {
         Ok(Self {
-            id,
+            id: PlayerId::default(),
             name,
             height,
             weight,
@@ -35,5 +35,9 @@ impl<'a> Player<'a> {
             status,
             role,
         })
+    }
+
+    pub fn update_status(&mut self, next_status: PlayerStatus) {
+        self.status = next_status;
     }
 }

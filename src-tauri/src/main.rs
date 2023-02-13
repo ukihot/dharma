@@ -1,3 +1,6 @@
+use crate::services::{calculate_score, greet};
+
+mod common;
 mod models;
 mod services;
 
@@ -5,11 +8,6 @@ mod services;
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
 )]
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
-
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
@@ -18,7 +16,7 @@ fn main() {
                     .build()?;
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![greet, calculate_score])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

@@ -1,10 +1,10 @@
 pub mod player_entity;
+pub mod player_height;
+pub mod player_id;
+pub mod player_name;
+pub mod player_number;
 pub mod player_repository;
+pub mod player_role;
 pub mod player_service;
-pub(super) mod player_id;
-pub(super) mod player_name;
-pub(super) mod player_role;
-pub(super) mod player_weight;
-pub(super) mod player_height;
-pub(super) mod player_status;
-pub(super) mod player_number;
+pub mod player_status;
+pub mod player_weight;
