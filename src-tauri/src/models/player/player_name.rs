@@ -1,30 +1,31 @@
+use anyhow::Result;
+use std::str::FromStr;
 use validator::Validate;
 
-#[derive(PartialEq, Eq, Clone, PartialOrd, Ord, Debug, Validate)]
-pub struct PlayerName<'a> {
+#[derive(Clone, Debug, PartialEq, Eq, Validate)]
+pub struct PlayerName {
     #[validate(length(min = 1))]
-    first: &'a str,
-    middle: &'a str,
-    #[validate(length(min = 1))]
-    last: &'a str,
+    value: String,
 }
 
-impl PlayerName<'_> {
-    pub fn new<T>(f: &str, m: &str, l: &str) -> Self
-    where
-        T: Into<String>,
-    {
-        Self {
-            first: f,
-            middle: m,
-            last: l,
-        }
+impl PlayerName {
+    pub fn new(name: &str) -> Result<Self> {
+        Ok(Self {
+            value: name.to_string(),
+        })
     }
 }
 
-/// スライス変換
-impl<'a> From<PlayerName<'a>> for &str {
-    fn from(name: PlayerName) -> Self {
-        name.into()
+impl FromStr for PlayerName {
+    type Err = anyhow::Error;
+
+    fn from_str(name: &str) -> Result<Self> {
+        Self::new(name)
+    }
+}
+impl std::fmt::Display for PlayerName {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.value)?;
+        Ok(())
     }
 }

@@ -4,7 +4,7 @@ pub struct PlayerStatus {
 }
 
 #[derive(PartialEq, Eq, Clone, PartialOrd, Ord, Debug)]
-enum Status {
+pub enum Status {
     /// コート内でプレイ中
     Inside,
     /// シッティングブロックで待機中
