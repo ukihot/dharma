@@ -2,6 +2,6 @@
 import { render } from "solid-js/web";
 
 import "./style.css";
-import App from "./App";
+import Dharma from "./Dharma";
 
-render(() => <App />, document.getElementById("root") as HTMLElement);
+render(() => <Dharma />, document.getElementById("root") as HTMLElement);

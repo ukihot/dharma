@@ -21,7 +21,7 @@ impl From<Player> for PlayerDTO {
             height: u8::from(player.height),
             weight: u8::from(player.weight),
             number: u8::from(player.number),
-            status: u8::from(player.role),
+            status: u8::from(player.status),
         }
     }
 }
