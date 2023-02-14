@@ -1,6 +1,7 @@
-use crate::services::{calculate_score, greet};
+use crate::services::greet;
 
 mod common;
+mod infra;
 mod models;
 mod services;
 
@@ -16,7 +17,7 @@ fn main() {
                     .build()?;
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![greet, calculate_score])
+        .invoke_handler(tauri::generate_handler![greet])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

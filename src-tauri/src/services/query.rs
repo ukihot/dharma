@@ -1,0 +1,1 @@
+pub mod player_query_trait;
