@@ -1,0 +1,1 @@
+pub mod register_player_interactor;

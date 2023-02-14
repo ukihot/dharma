@@ -12,3 +12,17 @@ impl PlayerWeight {
         Ok(Self { value: id })
     }
 }
+
+impl TryFrom<u8> for PlayerWeight {
+    type Error = ();
+
+    fn try_from(height: u8) -> Result<Self, Self::Error> {
+        Ok(Self { value: height })
+    }
+}
+
+impl From<PlayerWeight> for u8 {
+    fn from(height: PlayerWeight) -> Self {
+        height.into()
+    }
+}

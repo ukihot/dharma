@@ -1,12 +1,2 @@
-pub struct Command;
-
-pub trait KabaddiUsecase {
-    fn calculate_score(&self) -> u8;
-}
-
-impl KabaddiUsecase for Command {
-    /// シナリオから点数を決定
-    fn calculate_score(&self) -> u8 {
-        1
-    }
-}
+pub mod calcurate_score;
+pub mod player_usecase;

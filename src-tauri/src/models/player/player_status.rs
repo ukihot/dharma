@@ -1,14 +1,28 @@
-#[derive(PartialEq, Eq, Clone, PartialOrd, Ord, Debug)]
+use anyhow::Result;
+use validator::Validate;
+
+#[derive(PartialEq, Eq, Clone, PartialOrd, Ord, Debug, Validate)]
 pub struct PlayerStatus {
-    status: Status,
+    #[validate(range(min = 0, max = 2))]
+    value: u8,
 }
 
-#[derive(PartialEq, Eq, Clone, PartialOrd, Ord, Debug)]
-pub enum Status {
-    /// コート内でプレイ中
-    Inside,
-    /// シッティングブロックで待機中
-    Outside,
-    /// ベンチで交代待機
-    Reserve,
+impl PlayerStatus {
+    pub fn new(id: u8) -> Result<Self> {
+        Ok(Self { value: id })
+    }
+}
+
+impl TryFrom<u8> for PlayerStatus {
+    type Error = ();
+
+    fn try_from(height: u8) -> Result<Self, Self::Error> {
+        Ok(Self { value: height })
+    }
+}
+
+impl From<PlayerStatus> for u8 {
+    fn from(height: PlayerStatus) -> Self {
+        height.into()
+    }
 }

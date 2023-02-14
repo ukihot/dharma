@@ -1,4 +1,4 @@
-use crate::common::error::MyError;
+use crate::common::dharma_error::DharmaError;
 use anyhow::Result;
 use std::str::FromStr;
 use ulid::Ulid;
@@ -10,7 +10,7 @@ impl PlayerId {
     fn new(s: &str) -> Result<Self> {
         Ok(PlayerId(
             Ulid::from_string(s)
-                .map_err(|_| MyError::type_error("IDに誤りがあります"))?
+                .map_err(|_| DharmaError::type_error("IDに誤りがあります"))?
                 .to_string(),
         ))
     }
