@@ -21,14 +21,7 @@ export default function OpsBoard() {
 
     return (
         <div>
-            {['A', 'B', 'C', 'D', 'E', 'F', 'G'].map((label, index) => (
-                <Checkbox
-                    for={`checkbox-${index}`}
-                    checked={checked()}
-                    onChange={() => handleCheck(index)}
-                    label={label}
-                />
-            ))}
+            
             <Button
                 onClick={() => {
                     const checkedCount = checked().filter((c) => c).length

@@ -10,19 +10,8 @@ pub struct AddScorePayload {
 }
 
 #[tauri::command]
-pub fn add_score(payload: AddScorePayload) -> u8 {
-    payload.current_score + 1
-}
-
-fn format_invocation(window: &Window, event: &str, payload: String) -> Result<String, String> {
-    let js_string = format!(r#"{}"#, payload);
-    let invocation = format!(r#"{}("#, event);
-
-    let js_code = format!(
-        r#"try {{ window['{}']({}) }} catch(e) {{ console.error(e) }}"#,
-        event, js_string
-    );
-    Ok(js_code)
+pub fn add_score(payload: AddScorePayload) -> String {
+    format!("Score: {}", payload.current_score + 1)
 }
 
 /// タッチ成功：
