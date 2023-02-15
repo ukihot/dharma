@@ -13,16 +13,7 @@ function Scorer() {
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={0.5}>
                 <Grid item xs={6} md={2}>
-                    <Item>xs=6 md=8</Item>
-                </Grid>
-                <Grid item xs={6} md={2}>
-                    <Item>xs=6 md=4</Item>
-                </Grid>
-                <Grid item xs={6} md={2}>
-                    <Item>xs=6 md=4</Item>
-                </Grid>
-                <Grid item xs={6} md={2}>
-                    <Item>xs=6 md=8</Item>
+                    <Item>{ }</Item>
                 </Grid>
             </Grid>
         </Box>

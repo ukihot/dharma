@@ -2,10 +2,27 @@ pub mod dto;
 pub mod interactor;
 pub mod query;
 pub mod usecase;
+use tauri::{Event, Manager, Window};
+// the payload type must implement `Serialize` and `Clone`.
+#[derive(Clone, serde::Serialize)]
+pub struct AddScorePayload {
+    pub current_score: u8,
+}
 
 #[tauri::command]
-pub fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
+pub fn add_score(payload: AddScorePayload) -> u8 {
+    payload.current_score + 1
+}
+
+fn format_invocation(window: &Window, event: &str, payload: String) -> Result<String, String> {
+    let js_string = format!(r#"{}"#, payload);
+    let invocation = format!(r#"{}("#, event);
+
+    let js_code = format!(
+        r#"try {{ window['{}']({}) }} catch(e) {{ console.error(e) }}"#,
+        event, js_string
+    );
+    Ok(js_code)
 }
 
 /// タッチ成功：
