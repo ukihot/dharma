@@ -3,13 +3,16 @@ import { Button } from '@suid/material'
 
 const Start = () => {
     return (
-        <div>
+        <div class="row">
             <h1>Welcome to Dharma</h1>
-            <Button as={Link} href="/dashboard">
-                Go to Dashboard
+            <Button as={Link} href="/register">
+                マスタ
             </Button>
-            <Button as={Link} href="/settings">
-                Go to Settings
+            <Button as={Link} href="/gamemaker">
+                ゲームメイク
+            </Button>
+            <Button as={Link} href="/logger">
+                レコーディング
             </Button>
         </div>
     )
