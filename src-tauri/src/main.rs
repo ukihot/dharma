@@ -1,4 +1,7 @@
 use crate::services::greet;
+use crate::services::line_out;
+use crate::services::raid_out;
+use crate::services::raid_success;
 
 mod common;
 mod infra;
@@ -17,7 +20,12 @@ fn main() {
                     .build()?;
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![
+            greet,
+            raid_out,
+            raid_success,
+            line_out
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
