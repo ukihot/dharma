@@ -1,7 +1,14 @@
 /* @refresh reload */
-import { render } from "solid-js/web";
+import { render } from 'solid-js/web'
+import { Router } from '@solidjs/router'
+import './styles/dharma.css'
+import Dharma from './Dharma'
 
-import "./style.css";
-import Dharma from "./Dharma";
-
-render(() => <Dharma />, document.getElementById("root") as HTMLElement);
+render(
+    () => (
+        <Router>
+            <Dharma />
+        </Router>
+    ),
+    document.getElementById('root') as HTMLElement
+)

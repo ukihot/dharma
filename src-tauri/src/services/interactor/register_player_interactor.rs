@@ -23,11 +23,11 @@ where
     QS: PlayerQueryService,
     R: PlayerRepository,
 {
-    fn register_player(&self, player_params: PlayerParams) -> Result<()> {
+    fn register_player(&self, _player_params: PlayerParams) -> Result<()> {
         Ok(())
     }
 
-    fn update_player_status(&self, player_id: PlayerId, next_status: PlayerStatus) -> Result<()> {
+    fn update_player_status(&self, _player_id: PlayerId, _next_status: PlayerStatus) -> Result<()> {
         todo!()
     }
 }
