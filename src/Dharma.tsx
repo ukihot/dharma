@@ -3,6 +3,7 @@ import { invoke } from '@tauri-apps/api/tauri'
 import { Button } from '@suid/material'
 import './Dharma.css'
 import Scorer from './components/Scorer'
+import OpsBoards from './components/OpsBoards'
 
 function Dharma() {
     const [greetMsg, setGreetMsg] = createSignal('')
@@ -14,17 +15,17 @@ function Dharma() {
         setGreetMsg(await invoke('greet', { name: name() }))
     }
 
-    async function hoge() {
-        setHogeMsg(await invoke('hoge', { name: name() }))
+    async function raid_success() {
+        setHogeMsg(await invoke('raid_success'))
     }
 
     return (
         <div class="container">
-            <Scorer/>
-            <p>
-                {greetMsg}
-                {hogeMsg}
-            </p>
+            <Scorer />
+            <div class="row">
+                <OpsBoards />
+                <OpsBoards />
+            </div>
         </div>
     )
 }
