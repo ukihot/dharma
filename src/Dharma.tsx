@@ -1,32 +1,22 @@
-import { createSignal } from 'solid-js'
 import { invoke } from '@tauri-apps/api/tauri'
+import Scorer from './pages/Scorer'
+import { appWindow, WebviewWindow } from '@tauri-apps/api/window'
 import { Button } from '@suid/material'
-import './Dharma.css'
-import Scorer from './components/Scorer'
-import OpsBoards from './components/OpsBoards'
+import { emit, listen } from '@tauri-apps/api/event'
+import { Route, Routes } from '@solidjs/router'
+import OpsBoard from './pages/OpsBoard'
+
+const unlisten = await listen('click', (event) => {
+    // event.event is the event name (useful if you want to use a single callback fn for multiple event types)
+    // event.payload is the payload object
+})
 
 function Dharma() {
-    const [greetMsg, setGreetMsg] = createSignal('')
-    const [name, setName] = createSignal('')
-
-    const [hogeMsg, setHogeMsg] = createSignal('')
-
-    async function greet() {
-        setGreetMsg(await invoke('greet', { name: name() }))
-    }
-
-    async function raid_success() {
-        setHogeMsg(await invoke('raid_success'))
-    }
-
     return (
-        <div class="container">
-            <Scorer />
-            <div class="row">
-                <OpsBoards />
-                <OpsBoards />
-            </div>
-        </div>
+        <Routes>
+            <Route path="/" component={OpsBoard} />
+            <Route path="/scorer" component={Scorer} />
+        </Routes>
     )
 }
 

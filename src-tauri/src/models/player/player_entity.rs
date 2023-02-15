@@ -18,7 +18,7 @@ pub struct Player {
 
 impl Player {
     pub fn new(
-        id: PlayerId,
+        _id: PlayerId,
         name: PlayerName,
         role: PlayerRole,
         height: PlayerHeight,
