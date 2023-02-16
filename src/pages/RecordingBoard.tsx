@@ -2,7 +2,7 @@ import { createSignal } from 'solid-js'
 import { Checkbox, Button } from '@suid/material'
 import { invoke } from '@tauri-apps/api'
 
-export default function OpsBoard() {
+export default function RecordingBoard() {
     const [checked, setChecked] = createSignal([
         false,
         false,
@@ -21,7 +21,6 @@ export default function OpsBoard() {
 
     return (
         <div>
-            
             <Button
                 onClick={() => {
                     const checkedCount = checked().filter((c) => c).length

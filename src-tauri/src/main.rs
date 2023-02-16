@@ -1,4 +1,4 @@
-use crate::services::add_score;
+use crate::services::fetch_games;
 
 mod common;
 mod infra;
@@ -7,7 +7,7 @@ mod services;
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![add_score])
+        .invoke_handler(tauri::generate_handler![fetch_games])
         .run(tauri::generate_context!())
         .expect("failed to run app");
 }

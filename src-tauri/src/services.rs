@@ -2,16 +2,42 @@ pub mod dto;
 pub mod interactor;
 pub mod query;
 pub mod usecase;
-use tauri::{Event, Manager, Window};
-// the payload type must implement `Serialize` and `Clone`.
-#[derive(Clone, serde::Serialize)]
-pub struct AddScorePayload {
-    pub current_score: u8,
+use serde::{self, Deserialize, Serialize};
+
+#[derive(Clone, Serialize, Deserialize)]
+pub struct GameResultPayload {
+    pub id: String,
+    pub winner: String,
+    pub loser: String,
+    pub score: String,
+    pub held_at: String,
 }
 
 #[tauri::command]
-pub fn add_score(payload: AddScorePayload) -> String {
-    format!("Score: {}", payload.current_score + 1)
+pub fn fetch_games() -> Result<Vec<GameResultPayload>, String> {
+    Ok(vec![
+        GameResultPayload {
+            id: ("1").to_string(),
+            winner: ("安藝ライノハーツ").to_string(),
+            loser: ("尾道オータムリーブス").to_string(),
+            score: ("32-31").to_string(),
+            held_at: ("2023/01/02").to_string(),
+        },
+        GameResultPayload {
+            id: ("2").to_string(),
+            winner: ("尾道オータムリーブス").to_string(),
+            loser: ("安藝ライノハーツ").to_string(),
+            score: ("9-29").to_string(),
+            held_at: ("2022/12/22").to_string(),
+        },
+        GameResultPayload {
+            id: ("2").to_string(),
+            winner: ("B.W.H").to_string(),
+            loser: ("安藝ライノハーツ").to_string(),
+            score: ("34-11").to_string(),
+            held_at: ("2023/02/16").to_string(),
+        },
+    ])
 }
 
 /// タッチ成功：
