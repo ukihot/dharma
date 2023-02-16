@@ -1,21 +1,23 @@
-use crate::models::player::player_entity::Player;
+use crate::models::{
+    common::value_objects::{score::Score, team_id::TeamId, team_name::TeamName},
+    player::player_entity::Player,
+};
 
-use super::{team_id::TeamId, team_name::TeamName, team_score::TeamScore};
 use anyhow::Result;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Team {
     pub id: TeamId,
     pub name: TeamName,
-    pub total_score: TeamScore,
+    pub total_score: Score,
     pub members: Vec<Player>,
 }
 
-impl Team{
+impl Team {
     pub fn new(
         id: TeamId,
         name: TeamName,
-        total_score: TeamScore,
+        total_score: Score,
         members: Vec<Player>,
     ) -> Result<Self> {
         Ok(Self {

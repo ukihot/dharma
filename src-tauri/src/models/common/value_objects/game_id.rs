@@ -1,14 +1,15 @@
-use crate::common::dharma_error::DharmaError;
 use anyhow::Result;
 use std::str::FromStr;
 use ulid::Ulid;
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct PlayerId(String);
+use crate::models::common::errors::dharma_error::DharmaError;
 
-impl PlayerId {
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct GameId(String);
+
+impl GameId {
     fn new(s: &str) -> Result<Self> {
-        Ok(PlayerId(
+        Ok(GameId(
             Ulid::from_string(s)
                 .map_err(|_| DharmaError::type_error("IDに誤りがあります"))?
                 .to_string(),
@@ -16,14 +17,14 @@ impl PlayerId {
     }
 }
 
-impl Default for PlayerId {
+impl Default for GameId {
     fn default() -> Self {
         // TODO: uuid等で自動生成する
-        PlayerId("DummyId".to_string())
+        GameId("DummyId".to_string())
     }
 }
 
-impl FromStr for PlayerId {
+impl FromStr for GameId {
     type Err = anyhow::Error;
 
     fn from_str(s: &str) -> Result<Self> {
@@ -31,7 +32,7 @@ impl FromStr for PlayerId {
     }
 }
 
-impl std::fmt::Display for PlayerId {
+impl std::fmt::Display for GameId {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.0)?;
         Ok(())

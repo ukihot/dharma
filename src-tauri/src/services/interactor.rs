@@ -1,1 +1,1 @@
-pub mod register_player_interactor;
+pub mod pre_game_interactor;

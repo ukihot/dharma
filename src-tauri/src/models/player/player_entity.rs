@@ -1,10 +1,11 @@
 use anyhow::Result;
 
-use super::{
+use crate::models::common::value_objects::{
     player_height::PlayerHeight, player_id::PlayerId, player_name::PlayerName,
     player_number::PlayerNumber, player_role::PlayerRole, player_status::PlayerStatus,
     player_weight::PlayerWeight,
 };
+
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Player {
     pub id: PlayerId,

@@ -11,7 +11,7 @@ import {
 import { Link } from '@solidjs/router'
 import { invoke } from '@tauri-apps/api'
 
-type GameResultParams = {
+type PreGameParams = {
     id: number
     winner: string
     loser: string
@@ -20,10 +20,10 @@ type GameResultParams = {
 }
 
 const Guide = () => {
-    const [gameResults, setGameResults] = createSignal<GameResultParams[]>([])
+    const [gameResults, setPreGames] = createSignal<PreGameParams[]>([])
 
     onMount(async () => {
-        setGameResults(await invoke('fetch_games'))
+        setPreGames(await invoke('fetch_results'))
     })
 
     return (
