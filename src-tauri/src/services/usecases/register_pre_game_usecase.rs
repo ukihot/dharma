@@ -1,22 +1,17 @@
 use crate::{
-    models::pre_game::pre_game_repository_trait::PreGameRepository,
+    models::pre_game::pre_game_repository_trait::{HavePreGameRepository, PreGameRepository},
     services::payload::pre_game_payload::PreGamePayload,
 };
 
-pub trait RegisterPreGameUsecase {
-    fn register(pre_game_payload: PreGamePayload) -> String;
-}
-
-pub struct RegisterPreGameInteractor<U: RegisterPreGameUsecase, R: PreGameRepository> {
-    query_service: U,
-    repository: R,
-}
-
-impl<U: RegisterPreGameUsecase, R: PreGameRepository> RegisterPreGameInteractor<U, R> {
-    pub fn new(query_service: U, repository: R) -> Self {
-        RegisterPreGameInteractor {
-            query_service,
-            repository,
-        }
+pub trait PreGameUsecase: HavePreGameRepository {
+    fn register(&self, pre_game_payload: PreGamePayload) {
+        self.provide_repository().save(pre_game_payload);
     }
+}
+
+impl<T: HavePreGameRepository> PreGameUsecase for T {}
+
+pub trait HavePreGameUsecase {
+    type PreGameUsecase: PreGameUsecase;
+    fn provide_usecase(&self) -> Self::PreGameUsecase;
 }

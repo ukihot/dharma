@@ -1,9 +1,7 @@
-use async_trait::async_trait;
-
 use crate::services::payload::result_payload::ResultPayload;
 
-#[async_trait]
+// 実際の実装を依存関係の定義とともに提供
 pub trait ResultRepository {
-    // 試合結果の検索
-    async fn fetch(&self) -> Result<Vec<ResultPayload>, String>;
+    // ただの初期表示
+    fn hoge(&self) -> Result<Vec<ResultPayload>, String>;
 }

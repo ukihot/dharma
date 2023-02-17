@@ -23,6 +23,8 @@ regex = "1.7.1"
 thiserror = "1.0.38"
 ulid = "1"
 chrono = { version = "^0.4", features = ["serde"] }
+futures = "*"
+more-di = "*"
 
 [features]
 # by default Tauri runs in production mode

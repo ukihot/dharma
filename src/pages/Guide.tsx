@@ -15,7 +15,8 @@ type PreGameParams = {
     id: number
     winner: string
     loser: string
-    score: string
+    winner_score: number
+    loser_score: number
     held_at: string
 }
 
@@ -23,7 +24,7 @@ const Guide = () => {
     const [gameResults, setPreGames] = createSignal<PreGameParams[]>([])
 
     onMount(async () => {
-        setPreGames(await invoke('fetch_results'))
+        setPreGames(await invoke('fetch_results_init'))
     })
 
     return (
@@ -45,7 +46,9 @@ const Guide = () => {
 
                             <TableCell>{result.winner}</TableCell>
                             <TableCell>{result.loser}</TableCell>
-                            <TableCell>{result.score}</TableCell>
+                            <TableCell>
+                                {result.winner_score} - {result.loser_score}
+                            </TableCell>
                             <TableCell>{result.held_at}</TableCell>
                         </TableRow>
                     ))}
