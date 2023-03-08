@@ -11,7 +11,7 @@ ARG GIT_EMAIL
 RUN groupadd -g ${ID} ${USER_NAME}
 RUN useradd -m -s /bin/bash -u ${ID} -g ${ID} -G sudo ${USER_NAME}
 RUN echo ${USER_NAME}:pass | chpasswd
-RUN echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers/${USER_NAME}
+RUN echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/${USER_NAME}
 RUN echo chmod 0440 /etc/sudoers.d/${USER_NAME}
 
 # 権限調整
