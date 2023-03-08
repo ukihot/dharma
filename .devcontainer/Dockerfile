@@ -20,8 +20,8 @@ RUN chown ${USER_NAME}:${USER_NAME} ${WORK_DIR}
 USER ${ID}
 
 # Git設定
-RUN git config --global user.email ${USER_EMAIL}
-RUN git config --global user.name ${USER_NAME}
+RUN git config --global user.email ${GIT_EMAIL}
+RUN git config --global user.name ${GIT_NAME}
 
 # Tauriに必要なライブラリ
 RUN sudo apt-get update

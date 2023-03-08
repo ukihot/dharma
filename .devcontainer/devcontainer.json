@@ -26,5 +26,9 @@
 			]
 		}
 	},
-	"remoteUser": "kustham"
+	"remoteEnv": {
+		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
+		"COMPOSE_FORCE_WINDOWS_HOST": "true"
+	},
+	"remoteUser": "qq"
 }
