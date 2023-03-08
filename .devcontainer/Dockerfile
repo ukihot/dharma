@@ -1,15 +1,23 @@
 ARG VARIANT=1-bullseye
 FROM mcr.microsoft.com/devcontainers/rust:0-${VARIANT}
 
-# 開発用ユーザ
 ARG ID=20000
 ARG USER_EMAIL
 ARG USER_NAME
+ARG WORK_DIR=/home/qaqa/
+
+# 開発用ユーザ
 RUN groupadd -g ${ID} ${USER_NAME}
 RUN useradd -m -s /bin/bash -u ${ID} -g ${ID} -G sudo ${USER_NAME}
-RUN echo ${USER_NAME}:pass | chpasswd && \
-  echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-USER ${USER_NAME}
+RUN echo ${USER_NAME}:pass | chpasswd
+RUN echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers/${USER_NAME}
+RUN echo chmod 0440 /etc/sudoers.d/${USER_NAME}
+
+# 権限調整
+
+WORKDIR ${WORK_DIR}
+RUN chown ${USER_NAME}:${USER_NAME} ${WORK_DIR}
+USER ${ID}
 
 # Git設定
 RUN git config --global user.email ${USER_EMAIL}

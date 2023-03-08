@@ -15,7 +15,6 @@ services:
           - ../:/dharma:cached
       links:
         - db
-
     db:
       image: redis:latest
       restart: unless-stopped
