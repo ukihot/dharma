@@ -2,9 +2,10 @@ ARG VARIANT=1-bullseye
 FROM mcr.microsoft.com/devcontainers/rust:0-${VARIANT}
 
 ARG ID=20000
-ARG USER_EMAIL
-ARG USER_NAME
+ARG USER_NAME=qq
 ARG WORK_DIR=/home/qaqa/
+ARG GIT_NAME
+ARG GIT_EMAIL
 
 # 開発用ユーザ
 RUN groupadd -g ${ID} ${USER_NAME}
