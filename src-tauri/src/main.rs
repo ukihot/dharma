@@ -3,12 +3,12 @@ mod controller;
 mod infra;
 mod models;
 mod services;
-use crate::controller::{fetch_results_init, regster_pre_game};
+use crate::controller::{fetch_results_init};
 use tauri::generate_handler;
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(generate_handler![fetch_results_init, regster_pre_game])
+        .invoke_handler(generate_handler![fetch_results_init])
         .run(tauri::generate_context!())
         .expect("failed to run app");
 }

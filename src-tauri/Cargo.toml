@@ -6,7 +6,7 @@ authors = ["Yu Tokunaga<ludoludo@outlook.jp>"]
 license = ""
 repository = ""
 edition = "2021"
-rust-version = "1.57"
+rust-version = "1.67"
 
 [build-dependencies]
 tauri-build = { version = "1.2", features = [] }
