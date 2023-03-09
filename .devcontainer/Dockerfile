@@ -3,26 +3,21 @@ FROM mcr.microsoft.com/devcontainers/rust:0-${VARIANT}
 
 ARG ID=20000
 ARG USER_NAME=qq
-ARG WORK_DIR=/home/qaqa/
 ARG GIT_NAME
 ARG GIT_EMAIL
+ARG WORK_DIR=/home/qq/dharma
 
 # 開発用ユーザ
 RUN groupadd -g ${ID} ${USER_NAME}
 RUN useradd -m -s /bin/bash -u ${ID} -g ${ID} -G sudo ${USER_NAME}
 RUN echo ${USER_NAME}:pass | chpasswd
 RUN echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/${USER_NAME}
-RUN echo chmod 0440 /etc/sudoers.d/${USER_NAME}
-
-# 権限調整
-
-WORKDIR ${WORK_DIR}
-RUN chown ${USER_NAME}:${USER_NAME} ${WORK_DIR}
+RUN chmod 0440 /etc/sudoers.d/${USER_NAME}
+RUN chmod -R ug+rwx /usr/local/
 USER ${ID}
 
-# Git設定
-RUN git config --global user.email ${GIT_EMAIL}
-RUN git config --global user.name ${GIT_NAME}
+WORKDIR ${WORK_DIR}
+RUN chmod -R ug+rwx ${WORK_DIR}
 
 # Tauriに必要なライブラリ
 RUN sudo apt-get update
@@ -33,13 +28,14 @@ RUN sudo apt-get install -y libwebkit2gtk-4.0-dev \
   libssl-dev \
   libgtk-3-dev \
   libayatana-appindicator3-dev \
-  librsvg2-dev
+  librsvg2-dev \
+  gcc-multilib
 
 # yarn を入れとく
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 RUN sudo apt-get update
-RUN sudo apt install -y yarn
+RUN sudo apt-get install -y yarn
 
 # node を最新化
 RUN sudo yarn global add n
@@ -48,3 +44,6 @@ RUN sudo n latest
 # Tauri をインストール
 RUN cargo install tauri-cli
 
+# Git設定
+RUN git config --global user.email ${GIT_EMAIL}
+RUN git config --global user.name ${GIT_NAME}
